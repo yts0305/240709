@@ -1,0 +1,38 @@
+2D게임 런너 게임에서
+배경화면 무한반복 무한 루프
+첫번째 방법 : 쿼드 모델링을 움직이지 않고 모델링 안에 메쉬렌더러 머터리얼 안에 있는 이미지를 이동시키는 방법
+두번째 방법 : 모델링 없이 이미지 스프라이트 랜더러를 이용해서 무한 이동 하는 방법
+
+CameraShake : 카메라 흔들기 
+
+===
+
+struct ACStting
+{
+    public double currentInCelsius;
+    public double target;
+
+    public readonly double GetFahreheit()
+    {
+        target = currentInCelsius * 1.8 + 32;
+        return target;
+    }
+}
+class MainApp
+{
+    static void Main(string[] args)
+    {
+        ACStting acs;
+        acs.currentInCelsius = 25;
+        acs.target = 25;
+
+        Console.WriteLine($"{acs.GetFahreheit()}");
+        Console.WriteLine($"{acs.target}");
+    }
+}
+
+에서 GetFahreheit() 함수안에서
+target = currentInCelsius * 1.8 + 32 부분이 에러가 난다.
+그 이유가 읽기전용 함수인 readonly 함수인데 target 값을 변경하려 해서 오류가 난다.
+
+            return currentInCelsius * 1.8 + 32; 로 변경하면 정상 작동 된다.
