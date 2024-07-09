@@ -83,7 +83,7 @@ struct ACStting
 
     public readonly double GetFahreheit(double target)
     {
-        target = currentInCelsius * 1.8 + 32;
+        target = currentInCelsius * 1.8 + 32; 
         return target;
     }
 }
@@ -99,3 +99,29 @@ class MainApp
         Console.WriteLine($"{acs.target}");
     }
 }
+
+
+or 
+
+ struct ACStting
+ {
+     public double currentInCelsius;
+     public double target;
+
+     public readonly double GetFahreheit()
+     {
+         return currentInCelsius * 1.8 + 32;
+     }
+ }
+ class MainApp
+ {
+     static void Main(string[] args)
+     {
+         ACStting acs;
+         acs.currentInCelsius = 25;
+         acs.target = 25;
+
+         Console.WriteLine($"{acs.GetFahreheit()}");
+         Console.WriteLine($"{acs.target}");
+     }
+ }
